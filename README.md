@@ -1,8 +1,8 @@
 Instituto Superior Técnico, Universidade de Lisboa
 
-**Network and Computer Security**
+**Segurança Informática em Redes e Sistemas**
 
-# Lab guide: Java Cryptographic Mechanisms
+# Guião de laboratório: Criptografia com OpenSSL
 
 ## Objectivo
 
