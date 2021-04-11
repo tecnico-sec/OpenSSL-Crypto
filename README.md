@@ -77,7 +77,7 @@ No caso de ser usado um IV, o número de bits efectivo da _password_ deve ser ma
 
 ---
 
-## Exercício 2  Criptografia de chave pública
+## Exercício 2 - Criptografia de chave pública
 
 Neste exercício vamos criar e verificar assinaturas digitais, o que exige o uso de criptografia de chave pública.
 
