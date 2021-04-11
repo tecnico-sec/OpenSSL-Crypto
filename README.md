@@ -6,10 +6,9 @@ Instituto Superior Técnico, Universidade de Lisboa
 
 ## Objectivo
 
-O objetivo do guia consiste em aprofundar os conhecimentos sobre criptografia através do uso
-dos comandos fornecidos pelo OpenSSL.
+O objetivo deste guia é aprofundar os conhecimentos sobre criptografia.
 O [OpenSSL](https://www.openssl.org/) é, como o nome sugere, uma implementação aberta do protocolo SSL/TLS (*Secure Sockets Layer*/*Transport Layer Security*).
-No entanto, oferece também uma biblioteca para programação e comandos de linha que permitem utilizar diversos algoritmos criptográficos.
+No entanto, oferece também uma biblioteca para programação e comandos de linha que permitem utilizar diversos os algoritmos criptográficos.
 
 ---
 
@@ -21,15 +20,14 @@ O primeiro exercício consiste em cifrar e decifrar um ficheiro usando criptogra
 Comece por ver que está disponível o manual desse comando correndo `man openssl`.
 Pode também aceder aos manuais dos subcomandos usando `man`, p.ex., `man enc` para o subcomando `openssl enc`.
 
-2. Observe os algoritmos de criptografia simétrica disponíveis executando
-    `openssl list-cipher-commands`
-    Pode observar variações de algoritmos como AES (Advanced Encryption Standard, a norma norte-americana atual), DES, RC2, RC4, Blowfish (bf), Camellia.
-    Note que nem todos os resultados são realmente algoritmos criptográficos, p.ex., _base64_ é uma forma de codificação de binário em caracteres de texto e não um algoritmo criptográfico.
+2. Observe os algoritmos de criptografia simétrica disponíveis executando:  
+    `openssl list-cipher-commands`  
+Pode observar variações de algoritmos como AES (Advanced Encryption Standard, a norma norte-americana atual), DES, RC2, RC4, Blowfish (bf), Camellia.
+Note que nem todos os resultados são realmente algoritmos criptográficos, p.ex., _base64_ é uma forma de codificação de binário em caracteres de texto e não um algoritmo criptográfico.
 
 3. Crie um ficheiro com o nome `texto.txt` e 10 linhas todas com o conteúdo `Texto em claro!`.
 
-4. Vamos cifrar esse ficheiro como uma cifra de blocos, AES, com uma chave de 256 bits no
-    modo em que cada bloco é cifrado independentemente, ou seja, modo ECB (_electronic codebook_).
+4. Vamos cifrar esse ficheiro como uma cifra de blocos, AES, com uma chave de 256 bits no modo em que cada bloco é cifrado independentemente, ou seja, modo ECB (_electronic codebook_).
 O OpenSSL designa esse algoritmo/modo de cifra por _aes- 256 - ecb._
 Para cifrar qualquer coisa é preciso ter uma chave criptográfica.
 Uma solução prática para obter uma chave consiste em gerá-la a partir de uma _password_ (ou _passphrase_).
@@ -40,11 +38,8 @@ Execute o seguinte comando:
 Veja o conteúdo do ficheiro cifrado executando `cat texto.enc`.
 Como pode observar, o conteúdo é incompreensível.
 
-5. Decifre o ficheiro usando o seguinte comando, e observe como os dois ficheiros de texto são iguais.
-
-```bash
-openssl enc -d -aes- 256 - ecb -in texto.enc -out texto-decifrado.txt
-```
+5. Decifre o ficheiro usando o seguinte comando, e observe como os dois ficheiros de texto são iguais:  
+`openssl enc -d -aes- 256 - ecb -in texto.enc -out texto-decifrado.txt`
 
 6. Observe o conteúdo do ficheiro `texto.enc` usando o comando `hexdump` (corra `man hexdump` se não souber para que serve). 
 Use a opção `-v` para ver o ficheiro completo: `hexdump -v -C texto.enc`
