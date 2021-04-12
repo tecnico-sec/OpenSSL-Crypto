@@ -44,7 +44,7 @@ Como pode observar, o conteúdo é incompreensível.
 6. Observe o conteúdo do ficheiro `texto.enc` usando o comando `hexdump` (corra `man hexdump` se não souber para que serve). 
 Use a opção `-v` para ver o ficheiro completo: `hexdump -v -C texto.enc`
 Veja como no ficheiro `texto.enc` há um padrão visível. Como aes é uma bijeção, um atacante consegue inferir que o conteúdo desses blocos é igual, apesar de não conseguir descobrir qual o conteúdo desses blocos.
-Esta é a razão pela qual não se deve usar o modo ECB.
+Esta é a razão pela qual não se deve usar o modo ECB se não quisermos dar esta informção.
 
 7. Vamos então cifrar novamente o ficheiro usando o modo CBC (*Cipher Block Chaining*).
 Execute:  
