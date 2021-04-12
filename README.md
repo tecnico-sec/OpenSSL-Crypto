@@ -141,15 +141,25 @@ Veja o _hash_ fazendo `cat hfile`.
 e verifique executando:  
 `sha1sum -c hfile`
 
-4. Essas sínteses permitem detetar se os ficheiros foram corrompidos. Qual o nome dessa propriedade? Seria possível recuperar os ficheiros baseados na cifra?   
+4. Essas sínteses permitem detetar se os ficheiros foram corrompidos.
+Qual o nome dessa propriedade?
+Seria possível recuperar os ficheiros baseados na síntese?
 
-5. Assumindo que apenas um bit de um ficheiro foi trocado, proponha um algoritmo para recuperar o ficheiro original dado o hash original e o ficheiro com um bit trocado. Qual a complexidade do seu algoritmo?
+5. Assumindo que apenas um bit de um ficheiro foi trocado, proponha um algoritmo para recuperar o ficheiro original dado o *hash* original e o ficheiro com um bit trocado.
+Qual a complexidade do seu algoritmo?
 
-6. Faça o md5 dos ficheiros `ship.jpg` e `plane.jpg`. O que observou? Estes ficheiros foram gerados ao mesmo tempo com o objetivo de terem o mesmo hash. Que propriedade para o md5 estes ficheiros demonstram que é fácil de quebrar? Investigue a dificuldade (quanto tempo demora) deste ataque para o md5 e para sha1. 
+6. Calcule a síntese MD5 dos ficheiros `ship.jpg` e `plane.jpg`.
+O que observou?
 
-7. Como poderia usar o ataque acima para forjar uma assinatura digital? Dado o ataque anterior, quais as implicações, no ambito legal, de usar md5/sha1 em assinaturas digitais? 
+7. O resultado do cálculo anterior não foi uma coincidência.
+Os ficheiros foram gerados ao mesmo tempo com o objetivo de terem o mesmo *hash*.
+Que propriedade do MD5 foi quebrada?
+Investigue a dificuldade deste ataque (quanto tempo demora) para o MD5 e para SHA1.
 
-8. Para md5 e sha1 arbitrários, qual a dificuldade do melhor ataque de preimage conhecido atualmente? 
+8. Como poderia usar o ataque acima para forjar uma assinatura digital?
+Dado o ataque anterior, quais as implicações, no âmbito legal, de usar MD5/SHA1 em assinaturas digitais?
+
+9. Para MD5 e SHA1 arbitrários, qual a dificuldade do melhor ataque de *preimage* conhecido atualmente?
 
 ---
 
