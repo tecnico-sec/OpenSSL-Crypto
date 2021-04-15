@@ -75,7 +75,7 @@ Quanto tempo demoraria um ataque de força bruta a uma chave de 8 bytes usando u
 11. Como é que se sabe se uma _password_ tem tamanho suficiente?
 A regra é que o número de bits efectivo (NBE) da _password_ tem de ser maior ou igual ao número de bits da chave.
 O NBE de uma _password_ é dado por:  
-NBE = log 2 (nm) – sendo _n_ o número de caracteres disponíveis e _m_ o tamanho da _password._
+$NBE = log 2 (n^m)$ – sendo _n_ o número de caracteres disponíveis e _m_ o tamanho da _password._
 Considerando 64 caracteres disponíveis (26 letras maiúsculas, 26 minúsculas, 10 números, mais 2 caracteres quaisquer), que tamanho deve ter a _password_ para uma chave de 128 bits?
 No caso de ser usado um IV, o número de bits efectivo da _password_ deve ser maior ou igual ao número de bits da chave mais o IV.
 
