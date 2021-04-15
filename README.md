@@ -106,7 +106,7 @@ Pode obter um _hash_ do ficheiro `texto.txt` usando o seguinte comando:
 
 5. A opção `- sha1` designa o algoritmo de _hash_ SHA1.
 Podem ser usados outros. Veja quais através do comando:  
-`openssl list -message-digest-commands`
+`openssl list -digest-commands`
 
 6. O resultado do ponto anterior não é ainda uma assinatura, porque uma síntese não tem segredos.
 No entanto, o comando `openssl dgst` também serve para gerar assinaturas.
