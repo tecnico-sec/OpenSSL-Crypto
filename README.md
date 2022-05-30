@@ -141,7 +141,7 @@ Veja o _hash_ fazendo `cat hfile`.
 e verifique executando:  
 `sha1sum -c hfile`
 
-4. Essas sínteses permitem detetar se os ficheiros foram corrompidos.
+4. Essas funções de síntese (hash) têm uma propriedade que permite detetar se os ficheiros foram corrompidos.
 Qual o nome dessa propriedade?
 Seria possível recuperar os ficheiros baseados na síntese?
 
