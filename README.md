@@ -65,7 +65,7 @@ Lembre-se de que cada caracter hexadecimal representa 4 bits.
 10. O uso de uma _password_ para gerar chaves criptográficas pode ser inseguro.
 Por exemplo, o algoritmo AES usa uma chave de 128 ou 256 bits, o que é considerado seguro.
 No entanto, se a _password_ tiver poucos bytes, p.ex., 8, o número de chaves diferentes que se podem gerar é de apenas 64^8 = 26*8 = 2^48 (considerando 64 caracteres diferentes), o que é muito menos do que o número de chaves de 128 bits disponíveis, que é de 2^128.
-Pode observar quantos blocos `aes` o seu processador pode encriptar por segundo num unico core correndo:
+Pode observar quantos blocos `aes` o seu processador pode cifrar por segundo num unico core correndo:
 `openssl speed aes`
 Quais as implicações de usar uma chave curta? Ie, o que aconteceria se a chave tivesse apenas 8 bits?
 Quanto tempo demoraria um ataque de força bruta a uma chave de 8 bytes usando uma máquina igual à sua? E 1000 máquinas?
