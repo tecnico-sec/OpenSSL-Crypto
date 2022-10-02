@@ -163,12 +163,87 @@ Dado o ataque anterior, quais as implicações, no âmbito legal, de usar MD5/SH
 
 ---
 
+## Exercício 4 - Certificados Digitais
+
+A certificação digital é bastante usada na distribuição de chaves públicas e consiste na emissão de um certificado digital, por parte de uma Entidade Certificadora (EC) confiável, que associa uma determinada entidade a uma chave pública, o que permite assegurar dois principios vitais da comunicação em redes informáticas: a autenticação (uma entidade pode provar que é quem diz ser) e o não-repúdio (uma entidade não pode negar ter realizado uma ação).
+Este exercício consiste na análise de um certicado digital do tipo X.509, focando nalguns aspetos essenciais da certificação digital, e na sua cadeia de distribuição.
+Para isso usaremos o ficheiro `ulisboa.crt` que contém um certificado digital descarregado a partir da página *web* da Universidade de Lisboa, que implementa o protocolo HTTPS e por isso usa a certificação digital para se autenticar perante os seus visitantes.
+
+Comece por abrir o ficheiro `ulisboa.crt` e analise os seus conteúdos.
+
+Se editar com um editor de texto, o que vai ver terá o seguinte aspeto.
+
+```
+-----BEGIN CERTIFICATE-----
+MIIHiTCCBXGgAwIBAgIQUq5qBoTj1FkUpDQAuWd8ODANBgkqhkiG9w0BAQwFADBE
+...
+HwPfhh43Wj/72c6h9g==
+-----END CERTIFICATE-----
+```
+
+No Windows, abra com o Explorer, e depois fazendo duplo-clique no ícone do ficheiro.
+
+<img src="certwindows.png" alt="ULisboa Certificate Windows Dialog" width="315"/>
+
+No Linux faça um duplo-clique no ficheiro e de seguida carregue em "Detalhes" para visualizar os campos do certificado.
+
+<img src="certlinux.png" alt="ULisboa Certificate Linux Dialog" width="625"/>
+
+1. Que entidade produziu o certicado? Para que entidade foi o certicado produzido e qual a sua chave pública?
+
+<!-- A entidade CA que produziu o ceritifcado foi a GEANT OV RSA CA 4 que emitiu o certificado para www.ulisboa.pt com chave pública:
+30 82 01 0a 02 82 01 01 00 9c 00 95 9e 28 24 92 a8 91 b9 2d 01 e2 d6 46 57 d1 01 38 5f c4 c6 e6 04 32 78 51 0a a0 52 39 7b a8 f1 05 47 38 c7 03 ca 79 5a b6 98 f6 6f f5 04 55 48 1b b7 34 2c 6c bf 96 38 84 ae a6 5e 35 68 68 aa ca 71 c8 4e 6c a6 85 55 f9 9c df 15 5b fc e7 e2 97 2c 2e f6 4b 6b 91 f7 e5 4c 2f a2 24 5d 56 00 9d b6 73 6c d9 31 bd f4 56 37 88 b8 fd 3e 7f ff ab c2 5f ad 6b 96 2b b9 3c 80 53 da a9 89 12 3d f3 f6 19 c8 ef 32 7d 6e 73 eb fb d5 dc e7 85 f5 62 03 79 fb 14 74 9e c1 9a e9 ed 26 cb 32 21 8d f8 81 3a 13 4c 40 43 2b c0 92 ff 6a ef f3 ab d6 97 81 39 75 85 fc 53 76 0e 5a e3 53 5b 8a c0 af 6f c1 61 ca 09 8b 86 4e c5 39 3a 07 e5 33 f1 18 f1 6d 61 36 73 e0 cb b0 df 51 97 21 00 ab 56 6a c3 d6 4e 2c b7 2c 78 ca ee f5 f2 81 77 3d 51 3a c1 48 c6 c6 35 fc 84 02 9f f2 e8 8c f7 a5 02 03 01 00 01-->
+
+Os certificados têm um prazo de validade limitado.
+O tempo de duração do certificado é controlado de 2 formas: através de datas indicadas nos próprio certificado, ou através da emissão de um certificado de revogação. Um certificado de revogação é um certificado válido emitido por uma EC, onde se estabelece que a associação entre uma entidade e uma chave pública deixa de ser válida.
+
+2. A partir de que data o certificado ficou válido? E a partir de que data a validade do certificado expira?
+
+<!-- Ficou válido desde 04/04/2022 e fica válido até 05/04/2023-->
+
+3. Que algoritmos foram usados no cálculo da assinatura digital do certificado?  Qual é a necessidade de haver uma assinatura digital no certificado?
+
+<!--O algoritmo de digest da assinatura usado foi o sha384 e o algoritmo de chaves assimétricas foi o RSA. Tem que haver uma assinatura digital por parte de uma CA globalmente conhecida para a chave pública dessa entidade a quem foi emitida o ceritificado ser credível fazendo com qualquer pessoa que aceda a este ceritifcado saiba que essa chave públic é dessa entidade.-->
+
+4. Que chave foi usada para assinar este certificado?
+Que chave precisa o importador do certificado de ter, para validar a assinatura digital do certificado?
+
+<!-- A chave usada para assinar este certificado foi a chave privada da CA logo o importador do certificado precisa de ter a chave públic da CA para verificar que essa entidade é credível pois percebe-se que foi a CA que emitiu aquele certificado -->
+
+Imaginemos que a Entidade Certificadora X produziu este certificado.
+O facto de o importador do certificado precisar de ter a chave pública da EC X para validar a assinatura digital, é preciso que se obtenha o certificado de chave pública da EC X emitido por outra EC Y, é preciso ter o certificado de chave pública da EC Y, por outra EC Z, e assim sucessivamente, até chegar a uma EC de raíz.
+A validação de todos os certificados usando chaves públicas por outros certificados é chamada de cadeia de certificação.
+O processo de validar um certificado implica que se valide toda esta cadeia que termina quando se atinge um certificado autocertificado, por uma EC com chave pública conhecida.
+
+É possível analisar a cadeia de certificação de um certificado e ver todos os certificados que a formam. No Windows, basta abrir o certificado e abrir o separador "Caminho da certificação".
+
+5. Quantos certificados formam a cadeia de certificação? Quantos certificados intermédios existem?
+
+Qual é o certificado-raíz?
+
+<!-- Na cadeia de certificação existem 3 certificados. GEANT OV RSA CA 4 é o certificado intermédio e a Sectigo é o certificado-raíz.-->
+
+6. Para cada certificado verifique o emissor do certificado e a entidade para a qual o certificado foi criado.
+
+Que EC emitiu o certificado-raíz?
+
+<!--USERTrust RSA Certification Authority-->
+
+Para que a validação de toda a cadeia possa ocorrer, os certificado-raíz confiáveis e os certificados intermediarios são guardados nos próprios sistemas operativos, ou muitas vezes, são incluidos no *software*, como é o caso de alguns *web browsers*.
+No caso dos sistemas operativos, os certificados são guardados em ficheiros protegidos com permissões especiais, sendo possível modificar se tiver permissões para isso.
+É possível visualizar os certificados, escrevendo "certmgr.msc" na powershell, ou pesquisar "cert" no ícone de pesquisa e selecionar a opção "Gerir certificados de utilizador", no caso do Windows, ou na pasta /etc/ssl/certs no caso de uma distribuição Linux.
+
+Para windows:
+
+<img src="certmgr.png" alt="Certificate Manager" width="525"/>
+
+Também é possível ver os certificados guardados num *browser*.
+No caso do Firefox, é possível acedendo a definições -> privacidade e segurança -> gerir certificados.
+
+7. Tente encontrar os certificados das entidades da cadeia de certificação observada anteriormente, no seu *browser* ou no seu *sistema operativo* de acordo com as instruções dadas acima.
+
 ## Referências
 
 - OpenSSL, [http://www.openssl.org/](http://www.openssl.org/)
 
 ---
-
-### Agradecimentos
-
-A versão inicial deste guia foi escrita por Vasco Guita.
