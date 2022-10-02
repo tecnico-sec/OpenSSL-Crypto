@@ -7,6 +7,7 @@ Versão inicial:
 Revisões:
 
 - Miguel L. Pardal
+- Miguel P. Correia
 - Ricardo Chaves
 
 Exercício sobre certificados digitais:
