@@ -68,7 +68,7 @@ No entanto, se a _password_ tiver poucos caracteres, p.ex., 8, o número de chav
 Pode observar quantos blocos `aes` o seu processador pode cifrar por segundo num unico core correndo:
 `openssl speed aes`
 Quais as implicações de usar uma chave curta? Ie, o que aconteceria se a chave tivesse apenas 8 bits?
-Quanto tempo demoraria um ataque de força bruta a uma chave de 8 bytes usando uma máquina igual à sua? E 1000 máquinas?
+Quanto tempo demoraria um ataque de força bruta a uma chave de 8 bits usando uma máquina igual à sua? E 1000 máquinas?
 
 
 
